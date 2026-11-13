@@ -45,7 +45,7 @@ fun Portada(model: ProgramaModel) {
                         Button(onClick = { model.marcar(ficha.id) }) {
                             Text(if (ficha.favorita) "Quitar de mi agenda" else "Agregar a mi agenda")
                         }
-                    }
+                    } else Text("Esta charla ya no forma parte del programa.")
                 } else {
                     Text(seccion, style = MaterialTheme.typography.headlineLarge)
                     when (seccion) {
