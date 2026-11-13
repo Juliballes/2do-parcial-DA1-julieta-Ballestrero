@@ -17,13 +17,6 @@ Mesa controla el servicio local que usa Retrofit. Cada solicitud captura disponi
 | 43 · Volver al punto de lectura | Elegí Día 2 y Datos, abrí «Cachés para viajeros», volvé y rotá. Deben quedar dos resultados de Datos. Repetí dejando la ficha abierta y mandando la app al fondo. Si Android recupera la tarea tras matar su proceso, debe recuperar la ficha y, al volver, ambos filtros. Una tarea nueva arranca sin filtros. |
 | 44 · Control de descargas | Una carga automática por sesión (proceso) y una por actualización explícita. Rotar, entrar a una ficha o cambiar de pestaña agrega cero. Dos toques durante una petición agregan un intento. Tras éxito o falla se puede volver a pedir. Los filtros siguen siendo editables durante la espera. |
 
-Para el caso de proceso de 43, presioná Inicio, ejecutá `adb shell am kill ar.jornadas` y regresá desde Recientes. Para un arranque vacío sin señal, ejecutá `adb shell pm clear ar.jornadas` y luego `adb shell am start -n ar.jornadas/.MainActivity --ez servicio_disponible false`. El primer comando borra los datos de prueba.
 
-## Entrega
 
-La implementación conserva la base original y corrige los pedidos 41 a 44.
 
-- [Cambios y recorrido para la defensa](CAMBIOS.md).
-- [Pruebas automáticas y comprobaciones manuales](VALIDACION.md).
-- Compilar y probar: `./gradlew assembleDebug testDebugUnitTest`.
-- Abrir esta carpeta raíz en Android Studio con JDK 17 y SDK 34.
