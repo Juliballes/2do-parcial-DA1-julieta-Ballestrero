@@ -31,17 +31,5 @@ Se conserva la aplicación recibida: Kotlin, Compose, ViewModel, Retrofit, servi
 - `MutableStateFlow.compareAndSet` reserva la descarga antes de su primera suspensión. Si ya existe una en curso, otro toque retorna sin encolarse ni iniciar una segunda petición.
 - Después de finalizar, `finally` libera el estado de carga. Los filtros no se deshabilitan durante la espera.
 
-## Recorrido para defender la app
 
-1. La pantalla comunica Actualizar al ViewModel.
-2. El ViewModel inicia la operación en `viewModelScope`.
-3. El Repository evita descargas simultáneas y consulta `ProgramaApi` con Retrofit.
-4. `ServicioLocal` responde desde los JSON de assets y contabiliza el intento.
-5. El DAO aplica la instantánea y las favoritas en una transacción de Room.
-6. El Flow de Room publica los registros; la interfaz los observa con `collectAsStateWithLifecycle()`.
 
-Las operaciones suspendidas de Room y Retrofit administran su ejecución asíncrona. El trabajo de red se realiza antes de abrir la transacción de base de datos.
-
-## Validación
-
-Las pruebas reproducibles y los escenarios manuales están en [VALIDACION.md](VALIDACION.md). El workflow de GitHub compila el APK y ejecuta la suite JVM con Robolectric. El resultado de cada ejecución puede revisarse en Actions.
